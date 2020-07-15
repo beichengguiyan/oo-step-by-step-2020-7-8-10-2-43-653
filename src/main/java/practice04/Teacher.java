@@ -36,4 +36,8 @@ public class Teacher extends Person {
 	public void update() {
 		System.out.println("老师"+super.getName()+"班级编号为" + klass.getId());
 	}
+	
+	public void newStudentNotify(String name) {
+	      System.out.println("老师"+super.getName()+"收到通知：班级编号为"+klass.getId() +"新增学生"+name); 
+	}
 }

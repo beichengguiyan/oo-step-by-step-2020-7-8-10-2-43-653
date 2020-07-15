@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Klass {
-	private int id;
+	private int id=1;
 	private Teacher teacher;
 	private List<Student> studentList=new ArrayList<Student>();
 
@@ -13,7 +13,7 @@ public class Klass {
 	}
 	public void setId(int id) {
 		this.id = id;
-		notifyAllPersons();
+		notifyAllPersonsAboutClass();
 	}
 	public Teacher getTeacher() {
 		return teacher;
@@ -33,12 +33,21 @@ public class Klass {
 
 	public void addStudent(Student student) {
 		studentList.add(student);
+		notifyAllPersonsAboutStudent(student.getName());
 	}
 
-	public void notifyAllPersons() {
+	public void notifyAllPersonsAboutClass() {
+		teacher.update();
 		for (Student student : studentList) {
 			student.update();
 		}
-		teacher.update();
+		
+	}
+	
+	public void notifyAllPersonsAboutStudent(String name) {
+		teacher.newStudentNotify(name);
+		for (Student student : studentList) {
+			student.newStudentNotify(name);
+		}
 	}
 }

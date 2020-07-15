@@ -13,7 +13,6 @@ public class Klass {
 	}
 	public void setId(int id) {
 		this.id = id;
-		notifyAllPersonsAboutClass();
 	}
 	public Teacher getTeacher() {
 		return teacher;
@@ -33,10 +32,16 @@ public class Klass {
 
 	public void addStudent(Student student) {
 		studentList.add(student);
-		notifyAllPersonsAboutStudent(student.getName());
 	}
 
-	public void notifyAllPersonsAboutClass() {
+	public void notifyAllPersonsAboutStudentNameChange(String Formername,String name) {
+		teacher.newStudentNotify(Formername,name);
+		for (Student student : studentList) {
+			student.newStudentNotify(Formername,name);
+		}
+	}
+	
+	public void notifyAllPersonsAboutStudentClassChang() {
 		teacher.update();
 		for (Student student : studentList) {
 			student.update();
@@ -44,10 +49,4 @@ public class Klass {
 		
 	}
 	
-	public void notifyAllPersonsAboutStudent(String name) {
-		teacher.newStudentNotify(name);
-		for (Student student : studentList) {
-			student.newStudentNotify(name);
-		}
-	}
 }

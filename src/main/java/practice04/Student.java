@@ -22,17 +22,19 @@ public class Student extends Person {
 		return "My name is " + super.getName() + ". I am " + super.getAge() + " years old. I am a Student of Class "
 				+ klass.getId() + ".";
 	}
-	
-//	@Override
-//    public void setName(String name) {
-//        super.setName(name);
-//    }
-	
+
+	@Override
+	public void setName(String name) {
+		this.klass.notifyAllPersonsAboutStudentNameChange(super.getName(), name);
+		super.setName(name);
+	}
+
+	public void newStudentNotify(String Formername, String name) {
+		System.out.println("学生" + super.getName() + "收到通知：班级编号为" + klass.getId() + "学生" + Formername + "更名为" + name);
+	}
+
 	public void update() {
-	      System.out.println("学生"+super.getName()+"班级编号为"+klass.getId() ); 
+		System.out.println("学生" + super.getName() + "班级编号为" + klass.getId());
 	}
-	
-	public void newStudentNotify(String name) {
-	      System.out.println("学生"+super.getName()+"收到通知：班级编号为"+klass.getId() +"新增学生"+name); 
-	}
+
 }

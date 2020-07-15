@@ -10,7 +10,9 @@ public class Student extends Person {
 	}
 
 	public void setKlass(Klass klass) {
+		this.klass.notifyAllPersonsAboutStudentClassChange(super.getName(), klass.getId());
 		this.klass = klass;
+		this.klass.notifyAllPersonsAboutStudentJoin(super.getName());
 	}
 
 	public Klass getKlass() {
@@ -29,12 +31,16 @@ public class Student extends Person {
 		super.setName(name);
 	}
 
-	public void newStudentNotify(String Formername, String name) {
-		System.out.println("学生" + super.getName() + "收到通知：班级编号为" + klass.getId() + "学生" + Formername + "更名为" + name);
+	public void newStudentNotify(String formerName, String name) {
+		System.out.println("学生" + super.getName() + "收到通知：班级编号为" + klass.getId() + "学生" + formerName + "更名为" + name);
 	}
 
-	public void update() {
-		System.out.println("学生" + super.getName() + "班级编号为" + klass.getId());
+	public void update(String name, int id) {
+		System.out.println("学生" + super.getName() + "收到通知：班级编号为" + klass.getId() + "学生" + name + "更换班级为" + id);
+	}
+
+	public void StudentJoin(String name) {
+		System.out.println("学生" + super.getName() + "收到通知：班级编号为" + klass.getId() + "加入新学生" + name);
 	}
 
 }

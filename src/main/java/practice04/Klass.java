@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Klass {
-	private int id=1;
+	private int id;
 	private Teacher teacher;
-	private List<Student> studentList=new ArrayList<Student>();
+	private List<Student> studentList = new ArrayList<Student>();
 
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public Teacher getTeacher() {
 		return teacher;
 	}
@@ -34,19 +36,25 @@ public class Klass {
 		studentList.add(student);
 	}
 
-	public void notifyAllPersonsAboutStudentNameChange(String Formername,String name) {
-		teacher.newStudentNotify(Formername,name);
+	public void notifyAllPersonsAboutStudentNameChange(String formerName, String name) {
+		teacher.newStudentNotify(formerName, name);
 		for (Student student : studentList) {
-			student.newStudentNotify(Formername,name);
+			student.newStudentNotify(formerName, name);
+		}
+	}
+
+	public void notifyAllPersonsAboutStudentClassChange(String name, int id) {
+		teacher.update(name, id);
+		for (Student student : studentList) {
+			student.update(name, id);
 		}
 	}
 	
-	public void notifyAllPersonsAboutStudentClassChang() {
-		teacher.update();
+	public void notifyAllPersonsAboutStudentJoin(String name) {
+		teacher.notifyStudentJoin(name);
 		for (Student student : studentList) {
-			student.update();
+			student.StudentJoin(name);
 		}
-		
 	}
-	
+
 }
